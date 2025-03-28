@@ -1,5 +1,7 @@
 ﻿namespace sample1;
 using Newtonsoft.Json;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 class Program
 {
@@ -11,6 +13,16 @@ class Program
 
         string json = JsonConvert.SerializeObject(person);
         Console.WriteLine(json);
+
+
+        // Resize image
+        using (Image image = Image.Load("/workspaces/AA-Serverless-NET/sample1/input/image.png"))
+        {
+            image.Mutate(x => x.Resize(100, 100));
+            image.Save("/workspaces/AA-Serverless-NET/sample1/output/image.png");
+        }
+
+        
     }
 }
 
