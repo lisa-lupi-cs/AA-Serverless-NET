@@ -12,7 +12,7 @@
       "type": "process",
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/sample1/ResizeFunction"
+        "cwd": "${workspaceFolder}/ResizeFunction"
       }
     },
     {
@@ -31,7 +31,7 @@
       },
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/sample1/ResizeFunction"
+        "cwd": "${workspaceFolder}/ResizeFunction"
       }
     },
     {
@@ -47,7 +47,7 @@
       "type": "process",
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/sample1/ResizeFunction"
+        "cwd": "${workspaceFolder}/ResizeFunction"
       }
     },
     {
@@ -64,14 +64,14 @@
       "dependsOn": "clean release (functions)",
       "problemMatcher": "$msCompile",
       "options": {
-        "cwd": "${workspaceFolder}/sample1/ResizeFunction"
+        "cwd": "${workspaceFolder}/ResizeFunction"
       }
     },
     {
       "type": "func",
       "dependsOn": "build (functions)",
       "options": {
-        "cwd": "${workspaceFolder}/sample1/ResizeFunction/bin/Debug/net8.0"
+        "cwd": "${workspaceFolder}/ResizeFunction/bin/Debug/net8.0"
       },
       "command": "host start",
       "isBackground": true,
