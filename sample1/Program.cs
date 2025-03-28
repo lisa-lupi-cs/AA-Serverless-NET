@@ -14,15 +14,21 @@ class Program
         string json = JsonConvert.SerializeObject(person);
         Console.WriteLine(json);
 
+        // Resize images in the input folder using Parallel.ForEach
+        string inputDirectory = "/workspaces/AA-Serverless-NET/sample1/input/";
+        string outputDirectory = "/workspaces/AA-Serverless-NET/sample1/output/";
 
-        // Resize image
-        using (Image image = Image.Load("/workspaces/AA-Serverless-NET/sample1/input/image.png"))
+        var imageFiles = Directory.GetFiles(inputDirectory, "*.png");
+
+        Parallel.ForEach(imageFiles, imageFile =>
         {
-            image.Mutate(x => x.Resize(100, 100));
-            image.Save("/workspaces/AA-Serverless-NET/sample1/output/image.png");
-        }
-
-        
+            using (Image image = Image.Load(imageFile))
+            {
+                image.Mutate(x => x.Resize(100, 100));
+                string outputFilePath = Path.Combine(outputDirectory, Path.GetFileName(imageFile));
+                image.Save(outputFilePath);
+            }
+        });
     }
 }
 
