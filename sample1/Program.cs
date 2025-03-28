@@ -1,12 +1,16 @@
 ﻿namespace sample1;
+using Newtonsoft.Json;
 
 class Program
 {
     static void Main(string[] args)
     {
         Person person = new Person("John", 30);
-        person.Hello(true);
-        person.Hello(false);
+        // person.Hello(true);
+        // person.Hello(false);
+
+        string json = JsonConvert.SerializeObject(person);
+        Console.WriteLine(json);
     }
 }
 
