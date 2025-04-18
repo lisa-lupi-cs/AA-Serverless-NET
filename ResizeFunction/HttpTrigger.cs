@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
-namespace LupiSoupizet.ResizeFunction
-{ 
-    public static class ResizeHttpTrigger
+namespace Company.Function
+{
+    public static class HttpTrigger1
     {
-        [FunctionName("ResizeHttpTrigger")]
+        [FunctionName("HttpTrigger")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             int w = int.TryParse(req.Query["w"], out var width) ? width : 0; // Valeur par défaut : 0
@@ -54,9 +54,10 @@ namespace LupiSoupizet.ResizeFunction
                 catch (Exception ex)
                 {
                     log.LogError($"Erreur lors du traitement de l'image: {ex.Message}.");
-                    return new BadRequestObjectResult("Erreur lors du traitement de l'image : " + ex.Message);
+                    return new BadRequestObjectResult($"Erreur lors du traitement de l'image : {ex.Message} \n Input: {msInput} \n {req.Body} \n {req}");
                 }
             }
-            return new FileContentResult(targetImageBytes, "image/jpeg");        }
+            return new FileContentResult(targetImageBytes, "image/jpeg");        
+        }
     }
 }
